@@ -31,32 +31,32 @@ const TextDownloadApp = () => {
       justifyContent: 'center',
       minHeight: '100vh',
       backgroundColor: '#f0f0f0',
-      padding: '2rem'
+      padding: '1.5rem'
     }}>
       <div style={{
         width: '100%',
-        maxWidth: '800px',
+        maxWidth: '600px',
         backgroundColor: 'white',
-        borderRadius: '16px',
-        boxShadow: '0 8px 12px rgba(0, 0, 0, 0.1)',
-        padding: '3rem'
+        borderRadius: '12px',
+        boxShadow: '0 6px 9px rgba(0, 0, 0, 0.1)',
+        padding: '2.25rem'
       }}>
         <h1 style={{
-          fontSize: '3rem',
+          fontSize: '2.25rem',
           fontWeight: 'bold',
-          marginBottom: '2rem',
+          marginBottom: '1.5rem',
           textAlign: 'center'
-        }}>.txtダウンローダー</h1>
+        }}>テキストダウンローダー</h1>
         <textarea
           style={{
             width: '100%',
-            height: '320px',
-            marginBottom: '2rem',
-            padding: '1rem',
-            border: '2px solid #ccc',
-            borderRadius: '8px',
+            height: '240px',
+            marginBottom: '1.5rem',
+            padding: '0.75rem',
+            border: '1.5px solid #ccc',
+            borderRadius: '6px',
             resize: 'vertical',
-            fontSize: '1.25rem'
+            fontSize: '1.1rem'
           }}
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -65,13 +65,13 @@ const TextDownloadApp = () => {
         <button 
           style={{
             width: '100%',
-            padding: '1rem',
+            padding: '0.75rem',
             backgroundColor: text.trim() ? '#4CAF50' : '#ccc',
             color: 'white',
             border: 'none',
-            borderRadius: '8px',
+            borderRadius: '6px',
             cursor: text.trim() ? 'pointer' : 'not-allowed',
-            fontSize: '1.5rem',
+            fontSize: '1.2rem',
             fontWeight: 'bold'
           }}
           onClick={handleDownload}
