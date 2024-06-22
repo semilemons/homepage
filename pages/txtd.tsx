@@ -46,7 +46,7 @@ const TextDownloadApp = () => {
           fontWeight: 'bold',
           marginBottom: '1.5rem',
           textAlign: 'center'
-        }}>テキストダウンローダー</h1>
+        }}>.txt downloader</h1>
         <textarea
           style={{
             width: '100%',
