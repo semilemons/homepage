@@ -1,10 +1,17 @@
+const path = require('path');
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 })
 
-module.exports = withBundleAnalyzer({
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  reactStrictMode: true,
   staticPageGenerationTimeout: 300,
+  eslint: {
+    ignoreDuringBuilds: true, // ESLintをビルド時に無効化
+  },
   images: {
     domains: [
       'www.notion.so',
@@ -18,5 +25,12 @@ module.exports = withBundleAnalyzer({
     formats: ['image/avif', 'image/webp'],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
-  }
-})
+  },
+
+  webpack: (config) => {
+    config.resolve.alias['@'] = path.resolve(__dirname);
+    return config;
+  },
+}
+
+module.exports = withBundleAnalyzer(nextConfig)

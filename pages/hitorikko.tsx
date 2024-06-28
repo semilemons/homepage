@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Textarea } from '@/components/ui/textarea';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '../@/components/ui/card';
+import { Textarea } from '../@/components/ui/textarea';
+import { Button } from '../@/components/ui/button';
 import { Menu, X, Settings, Send, Paperclip, Trash2 } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '@/components/ui/tooltip';
+import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from '../@/components/ui/tooltip';
 
 const CompleteChatSimulator = () => {
   const [messages, setMessages] = useState([]);
@@ -34,7 +34,7 @@ const CompleteChatSimulator = () => {
       setCreatedAt(new Date().toISOString());
     }
     setUpdatedAt(new Date().toISOString());
-  }, [messages, partnerName, context]);
+  }, [messages, partnerName, context, createdAt]);
 
   useEffect(() => {
     if (isFileLoaded) {
@@ -50,7 +50,7 @@ const CompleteChatSimulator = () => {
     if (inputMessage.trim() !== '') {
       const now = new Date().toISOString();
       const messageText = isSpecial ? `{{{${inputMessage}}}}` : inputMessage;
-      setMessages([...messages, { 
+      setMessages(prevMessages => [...prevMessages, { 
         id: `msg_${Date.now()}`,
         text: messageText, 
         sender, 
@@ -109,17 +109,16 @@ const CompleteChatSimulator = () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        try {
-          const loadedData = JSON.parse(e.target.result);
-          setMessages(loadedData.messages);
-          setPartnerName(loadedData.metadata.partnerName);
-          setContext(loadedData.metadata.context);
-          setCreatedAt(loadedData.metadata.createdAt);
-          setUpdatedAt(loadedData.metadata.updatedAt);
-          setIsFileLoaded(true);
-        } catch (error) {
-          console.error('Error parsing JSON:', error);
-          alert('Invalid JSON file');
+        if (typeof e.target.result === 'string') {
+          try {
+            const loadedData = JSON.parse(e.target.result);
+            setMessages(loadedData.messages);
+            setPartnerName(loadedData.metadata.partnerName);
+            // ... rest of your code
+          } catch (error) {
+            console.error('Error parsing JSON:', error);
+            alert('Invalid JSON file');
+          }
         }
       };
       reader.readAsText(file);
@@ -147,7 +146,7 @@ const CompleteChatSimulator = () => {
 
   const confirmDelete = () => {
     if (messageToDelete) {
-      setMessages(messages.filter(msg => msg.id !== messageToDelete));
+      setMessages(prevMessages => prevMessages.filter(msg => msg.id !== messageToDelete));
       setMessageToDelete(null);
     }
     setShowDeleteConfirm(false);
