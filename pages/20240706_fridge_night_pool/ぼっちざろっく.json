@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "content": "bocchi the rock!",
+    "version": "1.0",
+    "lastUpdated": "2024-07-06"
+  },
+  "characters": [
+    {
+      "id": 1,
+      "name": "後藤ひとり",
+      "romanizedName": "Gotou Hitori"
+    },
+    {
+      "id": 2,
+      "name": "伊地知虹夏",
+      "romanizedName": "Ijichi Nijika"
+    },
+    {
+      "id": 3,
+      "name": "山田リョウ",
+      "romanizedName": "Yamada Ryou"
+    },
+    {
+      "id": 4,
+      "name": "喜多郁代",
+      "romanizedName": "Kita Ikuyo"
+    },
+
+    {
+      "id": 6,
+      "name": "伊地知星歌",
+      "romanizedName": "Ijichi Seika"
+    },
+    {
+      "id": 7,
+      "name": "廣井きくり",
+      "romanizedName": "Hiroi Kikuri"
+    }
+
+  ]
+}

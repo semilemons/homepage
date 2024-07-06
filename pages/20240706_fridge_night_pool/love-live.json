@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "content": "love live school idol project μ's",
+    "version": "1.0",
+    "lastUpdated": "2024-07-06"
+  },
+  "characters": [
+    {
+      "id": 1,
+      "name": "高坂穂乃果",
+      "romanizedName": "Kousaka Honoka"
+    },
+    {
+      "id": 2,
+      "name": "絢瀬絵里",
+      "romanizedName": "Ayase Eli"
+    },
+    {
+      "id": 3,
+      "name": "南ことり",
+      "romanizedName": "Minami Kotori"
+    },
+    {
+      "id": 4,
+      "name": "園田海未",
+      "romanizedName": "Sonoda Umi"
+    },
+    {
+      "id": 5,
+      "name": "星空凛",
+      "romanizedName": "Hoshizora Rin"
+    },
+    {
+      "id": 6,
+      "name": "西木野真姫",
+      "romanizedName": "Nishikino Maki"
+    },
+    {
+      "id": 7,
+      "name": "東條希",
+      "romanizedName": "Toujou Nozomi"
+    },
+    {
+      "id": 8,
+      "name": "小泉花陽",
+      "romanizedName": "Koizumi Hanayo"
+    },
+    {
+      "id": 9,
+      "name": "矢澤にこ",
+      "romanizedName": "Yazawa Nico"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "content": "love live sunshine Aqours",
+    "version": "1.0",
+    "lastUpdated": "2024-07-06"
+  },
+  "characters": [
+    {
+      "id": 1,
+      "name": "高海千歌",
+      "romanizedName": "Takami Chika"
+    },
+    {
+      "id": 2,
+      "name": "桜内梨子",
+      "romanizedName": "Sakurauchi Riko"
+    },
+    {
+      "id": 3,
+      "name": "松浦果南",
+      "romanizedName": "Matsuura Kanan"
+    },
+    {
+      "id": 4,
+      "name": "黒澤ダイヤ",
+      "romanizedName": "Kurosawa Dia"
+    },
+    {
+      "id": 5,
+      "name": "渡辺曜",
+      "romanizedName": "Watanabe You"
+    },
+    {
+      "id": 6,
+      "name": "津島善子",
+      "romanizedName": "Tsushima Yoshiko"
+    },
+    {
+      "id": 7,
+      "name": "国木田花丸",
+      "romanizedName": "Kunikida Hanamaru"
+    },
+    {
+      "id": 8,
+      "name": "小原鞠莉",
+      "romanizedName": "Ohara Mari"
+    },
+    {
+      "id": 9,
+      "name": "黒澤ルビィ",
+      "romanizedName": "Kurosawa Ruby"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "content": "love live superstar Liella!",
+    "version": "1.0",
+    "lastUpdated": "2024-07-06"
+  },
+  "characters": [
+    {
+      "id": 1,
+      "name": "澁谷かのん",
+      "romanizedName": "Shibuya Kanon"
+    },
+    {
+      "id": 2,
+      "name": "唐可可",
+      "romanizedName": "Tang Keke"
+    },
+    {
+      "id": 3,
+      "name": "嵐千砂都",
+      "romanizedName": "Arashi Chisato"
+    },
+    {
+      "id": 4,
+      "name": "平安名すみれ",
+      "romanizedName": "Heanna Sumire"
+    },
+    {
+      "id": 5,
+      "name": "葉月恋",
+      "romanizedName": "Hazuki Ren"
+    },
+    {
+      "id": 6,
+      "name": "桜小路きな子",
+      "romanizedName": "Sakurakoji Kinako"
+    },
+    {
+      "id": 7,
+      "name": "米女メイ",
+      "romanizedName": "Yoneme Mei"
+    },
+    {
+      "id": 8,
+      "name": "若菜四季",
+      "romanizedName": "Wakana Shiki"
+    },
+    {
+      "id": 9,
+      "name": "鬼塚夏美",
+      "romanizedName": "Onitsuka Natsumi"
+    }
+  ]
+}

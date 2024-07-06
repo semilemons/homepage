@@ -1,0 +1,69 @@
+{
+  "metadata": {
+    "content": "love live nijigasaki high school idol club",
+    "version": "1.0",
+    "lastUpdated": "2024-07-06"
+  },
+  "characters": [
+    {
+      "id": 1,
+      "name": "上原歩夢",
+      "romanizedName": "Uehara Ayumu"
+    },
+    {
+      "id": 2,
+      "name": "中須かすみ",
+      "romanizedName": "Nakasu Kasumi"
+    },
+    {
+      "id": 3,
+      "name": "桜坂しずく",
+      "romanizedName": "Osaka Shizuku"
+    },
+    {
+      "id": 4,
+      "name": "朝香果林",
+      "romanizedName": "Asaka Karin"
+    },
+    {
+      "id": 5,
+      "name": "宮下愛",
+      "romanizedName": "Miyashita Ai"
+    },
+    {
+      "id": 6,
+      "name": "近江彼方",
+      "romanizedName": "Konoe Kanata"
+    },
+    {
+      "id": 7,
+      "name": "優木せつ菜",
+      "romanizedName": "Yuki Setsuna"
+    },
+    {
+      "id": 8,
+      "name": "エマ・ヴェルデ",
+      "romanizedName": "Emma Verde"
+    },
+    {
+      "id": 9,
+      "name": "天王寺璃奈",
+      "romanizedName": "Tennoji Rina"
+    },
+    {
+      "id": 10,
+      "name": "三船栞子",
+      "romanizedName": "Mifune Shioriko"
+    },
+    {
+      "id": 11,
+      "name": "ミア・テイラー",
+      "romanizedName": "Mia Taylor"
+    },
+    {
+      "id": 12,
+      "name": "鐘嵐珠",
+      "romanizedName": "Zhong Lanzhu"
+    }
+  ]
+}

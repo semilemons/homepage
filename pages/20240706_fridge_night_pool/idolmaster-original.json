@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "content": "idolmaster all stars",
+    "version": "1.1",
+    "lastUpdated": "2024-07-06"
+  },
+  "characters": [
+    {
+      "id": 1,
+      "name": "天海春香",
+      "romanizedName": "Amami Haruka"
+    },
+    {
+      "id": 2,
+      "name": "如月千早",
+      "romanizedName": "Kisaragi Chihaya"
+    },
+    {
+      "id": 3,
+      "name": "星井美希",
+      "romanizedName": "Hoshii Miki"
+    },
+    {
+      "id": 4,
+      "name": "萩原雪歩",
+      "romanizedName": "Hagiwara Yukiho"
+    },
+    {
+      "id": 5,
+      "name": "高槻やよい",
+      "romanizedName": "Takatsuki Yayoi"
+    },
+    {
+      "id": 6,
+      "name": "菊地真",
+      "romanizedName": "Kikuchi Makoto"
+    },
+    {
+      "id": 7,
+      "name": "水瀬伊織",
+      "romanizedName": "Minase Iori"
+    },
+    {
+      "id": 8,
+      "name": "四条貴音",
+      "romanizedName": "Shijou Takane"
+    },
+    {
+      "id": 9,
+      "name": "秋月律子",
+      "romanizedName": "Akizuki Ritsuko"
+    },
+    {
+      "id": 10,
+      "name": "三浦あずさ",
+      "romanizedName": "Miura Azusa"
+    },
+    {
+      "id": 11,
+      "name": "双海亜美",
+      "romanizedName": "Futami Ami"
+    },
+    {
+      "id": 12,
+      "name": "双海真美",
+      "romanizedName": "Futami Mami"
+    },
+    {
+      "id": 13,
+      "name": "我那覇響",
+      "romanizedName": "Ganaha Hibiki"
+    }
+  ]
+}

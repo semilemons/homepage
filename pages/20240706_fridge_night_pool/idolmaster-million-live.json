@@ -1,0 +1,204 @@
+{
+  "metadata": {
+    "content": "idolmaster million live",
+    "version": "1.0",
+    "lastUpdated": "2024-07-06"
+  },
+  "characters": [
+    {
+      "id": 1,
+      "name": "春日未来",
+      "romanizedName": "Kasuga Mirai"
+    },
+    {
+      "id": 2,
+      "name": "最上静香",
+      "romanizedName": "Mogami Shizuka"
+    },
+    {
+      "id": 3,
+      "name": "伊吹翼",
+      "romanizedName": "Ibuki Tsubasa"
+    },
+    {
+      "id": 4,
+      "name": "田中琴葉",
+      "romanizedName": "Tanaka Kotoha"
+    },
+    {
+      "id": 5,
+      "name": "島原エレナ",
+      "romanizedName": "Shimabara Elena"
+    },
+    {
+      "id": 6,
+      "name": "佐竹美奈子",
+      "romanizedName": "Satake Minako"
+    },
+    {
+      "id": 7,
+      "name": "所恵美",
+      "romanizedName": "Tokoro Megumi"
+    },
+    {
+      "id": 8,
+      "name": "徳川まつり",
+      "romanizedName": "Tokugawa Matsuri"
+    },
+    {
+      "id": 9,
+      "name": "箱崎星梨花",
+      "romanizedName": "Hakozaki Serika"
+    },
+    {
+      "id": 10,
+      "name": "野々原茜",
+      "romanizedName": "Nonohara Akane"
+    },
+    {
+      "id": 11,
+      "name": "望月杏奈",
+      "romanizedName": "Mochizuki Anna"
+    },
+    {
+      "id": 12,
+      "name": "ロコ",
+      "romanizedName": "Roco"
+    },
+    {
+      "id": 13,
+      "name": "七尾百合子",
+      "romanizedName": "Nanao Yuriko"
+    },
+    {
+      "id": 14,
+      "name": "高山紗代子",
+      "romanizedName": "Takayama Sayoko"
+    },
+    {
+      "id": 15,
+      "name": "松田亜利沙",
+      "romanizedName": "Matsuda Arisa"
+    },
+    {
+      "id": 16,
+      "name": "高坂海美",
+      "romanizedName": "Kosaka Umi"
+    },
+    {
+      "id": 17,
+      "name": "中谷育",
+      "romanizedName": "Nakatani Iku"
+    },
+    {
+      "id": 18,
+      "name": "天空橋朋花",
+      "romanizedName": "Tenkubashi Tomoka"
+    },
+    {
+      "id": 19,
+      "name": "エミリー スチュアート",
+      "romanizedName": "Emily Stewart"
+    },
+    {
+      "id": 20,
+      "name": "北沢志保",
+      "romanizedName": "Kitazawa Shiho"
+    },
+    {
+      "id": 21,
+      "name": "舞浜歩",
+      "romanizedName": "Maihama Ayumu"
+    },
+    {
+      "id": 22,
+      "name": "木下ひなた",
+      "romanizedName": "Kinoshita Hinata"
+    },
+    {
+      "id": 23,
+      "name": "矢吹可奈",
+      "romanizedName": "Yabuki Kana"
+    },
+    {
+      "id": 24,
+      "name": "横山奈緒",
+      "romanizedName": "Yokoyama Nao"
+    },
+    {
+      "id": 25,
+      "name": "二階堂千鶴",
+      "romanizedName": "Nikaido Chizuru"
+    },
+    {
+      "id": 26,
+      "name": "馬場このみ",
+      "romanizedName": "Baba Konomi"
+    },
+    {
+      "id": 27,
+      "name": "大神環",
+      "romanizedName": "Ogami Tamaki"
+    },
+    {
+      "id": 28,
+      "name": "豊川風花",
+      "romanizedName": "Toyokawa Fuka"
+    },
+    {
+      "id": 29,
+      "name": "宮尾美也",
+      "romanizedName": "Miyao Miya"
+    },
+    {
+      "id": 30,
+      "name": "福田のり子",
+      "romanizedName": "Fukuda Noriko"
+    },
+    {
+      "id": 31,
+      "name": "真壁瑞希",
+      "romanizedName": "Makabe Mizuki"
+    },
+    {
+      "id": 32,
+      "name": "篠宮可憐",
+      "romanizedName": "Shinomiya Karen"
+    },
+    {
+      "id": 33,
+      "name": "百瀬莉緒",
+      "romanizedName": "Momose Rio"
+    },
+    {
+      "id": 34,
+      "name": "永吉昴",
+      "romanizedName": "Nagayoshi Subaru"
+    },
+    {
+      "id": 35,
+      "name": "北上麗花",
+      "romanizedName": "Kitakami Reika"
+    },
+    {
+      "id": 36,
+      "name": "周防桃子",
+      "romanizedName": "Suou Momoko"
+    },
+    {
+      "id": 37,
+      "name": "ジュリア",
+      "romanizedName": "Julia"
+    },
+    {
+      "id": 38,
+      "name": "白石紬",
+      "romanizedName": "Shiraishi Tsumugi"
+    },
+    {
+      "id": 39,
+      "name": "桜守歌織",
+      "romanizedName": "Sakuramori Kaori"
+    }
+  ]
+}
