@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
+
 
 const ImagePromptCopyApp = () => {
   const [copiedItem, setCopiedItem] = useState('');
@@ -112,7 +113,8 @@ const ImagePromptCopyApp = () => {
     });
   };
 
-  const styles = {
+  
+  const styles: { [key: string]: CSSProperties } = {
     container: {
       fontFamily: 'Arial, sans-serif',
       maxWidth: '1200px',
@@ -250,8 +252,7 @@ const ImagePromptCopyApp = () => {
 
         <div style={styles.section}>
           <h2 style={styles.sectionHeader}>ネガティブプロンプト</h2>
-          <div 
-            style={styles.copyableText}
+          <div style={styles.copyableText}
             onClick={() => handleCopy(negativePrompt, 'negative')}
           >
             {negativePrompt}
