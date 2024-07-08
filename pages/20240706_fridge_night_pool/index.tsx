@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-const ImagePromptCopyApp = () => {
+const ImagePromptCopyApp: React.FC = () => {
   const [copiedItem, setCopiedItem] = useState('');
   const [character, setCharacter] = useState('');
   const [positivePrompt, setPositivePrompt] = useState('');
@@ -124,14 +124,14 @@ const ImagePromptCopyApp = () => {
       position: 'relative',
     },
     leftSection: {
-      flex: '2',
+      flex: 2,
       marginRight: '20px',
     },
     rightSection: {
-      flex: '1',
+      flex: 1,
     },
     header: {
-      textAlign: 'center' as const, // ここを修正
+      textAlign: 'center' as React.CSSProperties['textAlign'],
       color: '#333',
       marginBottom: '20px',
     },
@@ -153,7 +153,7 @@ const ImagePromptCopyApp = () => {
       borderRadius: '4px',
       marginBottom: '10px',
       whiteSpace: 'pre-wrap',
-      wordBreak: 'break-all' as const, // ここを修正
+      wordBreak: 'break-word' as React.CSSProperties['wordBreak'],
       cursor: 'pointer',
       transition: 'background-color 0.3s',
     },
@@ -205,7 +205,7 @@ const ImagePromptCopyApp = () => {
       padding: '20px',
       borderRadius: '10px',
       zIndex: 1000,
-      textAlign: 'center' as const, // ここを修正
+      textAlign: 'center' as React.CSSProperties['textAlign'],
       fontSize: '18px',
       fontWeight: 'bold',
     },
@@ -214,7 +214,7 @@ const ImagePromptCopyApp = () => {
       border: 'none',
       color: 'white',
       padding: '10px 15px',
-      textAlign: 'center' as const, // ここを修正
+      textAlign: 'center' as React.CSSProperties['textAlign'],
       textDecoration: 'none',
       display: 'inline-block',
       fontSize: '14px',
