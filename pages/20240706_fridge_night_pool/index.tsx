@@ -130,6 +130,12 @@ const ImagePromptCopyApp: NextPage<{ sources: SourceData[] }> = ({ sources }) =>
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 value={character}
                 onChange={(e) => setCharacter(e.target.value)}
+                onClick={() => {
+                  const selectedCharacter = sources.find(source => source.metadata.content === selectedSource)?.characters.find(char => char.romanizedName === character);
+                  if (selectedCharacter) {
+                    navigator.clipboard.writeText(selectedCharacter.name);
+                  }
+                }}
               >
                 {sources.find(source => source.metadata.content === selectedSource)?.characters.map((char) => (
                   <option key={char.id} value={char.romanizedName}>
