@@ -3,6 +3,9 @@ import { GetStaticProps, NextPage } from 'next';
 import fs from 'fs';
 import path from 'path';
 
+import promptData from './prompt.json'; // Import the JSON file
+
+
 // 型定義
 interface CharacterData {
   id: number;
@@ -34,8 +37,15 @@ const usePromptGenerator = (
     aspectRatio: "704x1408"
   };
 
+  const [quickPrompt, setQuickPrompt] = useState(''); 
+
   useEffect(() => {
-    let prompt = `1 girl,{{${character}, ${selectedSource}}}, {wet bra, navel, wet panties}, luxury, night bool, in pool, bust focus, {{pastel pale tone skin}}, {{{smooth illustration,intricate silky hair,very aesthetic.amazing quality}}}`;
+    setQuickPrompt(promptData["quickPrompt"]); 
+
+  }, [quickPrompt]);
+  
+  useEffect(() => {
+    let prompt = `1 girl, solo, {{${character}, ${selectedSource}, ${quickPrompt}}}`;
     if (additionalPrompt) {
       prompt += `, ${additionalPrompt}`;
     }
@@ -70,7 +80,8 @@ const ImagePromptCopyApp: NextPage<{ sources: SourceData[] }> = ({ sources }) =>
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-center mb-8">冷蔵庫ナイトプール_プロンプトコピー</h1>
+      
+      <h1 className="text-3xl font-bold text-center mb-8">{promptData["title"]}</h1>
       <div className="flex flex-col md:flex-row gap-8">
         <div className="md:w-2/3">
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
