@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { GetStaticProps, NextPage } from 'next';
+import fs from 'fs';
+import path from 'path';
 
-// 型定義（変更なし）
+// 型定義
 interface CharacterData {
   id: number;
   name: string;
@@ -17,7 +19,7 @@ interface SourceData {
   characters: CharacterData[];
 }
 
-// カスタムフック（変更なし）
+// カスタムフック
 const usePromptGenerator = (
   selectedSource: string,
   character: string,
@@ -160,13 +162,15 @@ const ImagePromptCopyApp: NextPage<{ sources: SourceData[] }> = ({ sources }) =>
   );
 };
 
-// getStaticProps（変更なし）
 export const getStaticProps: GetStaticProps = async () => {
   try {
-    const context = require.context('./', false, /\.json$/);
-    const sources = context.keys().map(key => {
-      const source = context(key);
-      return source;
+    const currentDir = path.join(process.cwd(), 'pages', '20240706_fridge_night_pool');
+    const fileNames = fs.readdirSync(currentDir).filter(file => file.endsWith('.json'));
+    
+    const sources = fileNames.map(fileName => {
+      const filePath = path.join(currentDir, fileName);
+      const fileContents = fs.readFileSync(filePath, 'utf8');
+      return JSON.parse(fileContents);
     });
 
     return {
