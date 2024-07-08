@@ -113,7 +113,6 @@ const ImagePromptCopyApp = () => {
     });
   };
 
-  
   const styles: { [key: string]: CSSProperties } = {
     container: {
       fontFamily: 'Arial, sans-serif',
@@ -132,7 +131,7 @@ const ImagePromptCopyApp = () => {
       flex: '1',
     },
     header: {
-      textAlign: 'center',
+      textAlign: 'center' as const, // ここを修正
       color: '#333',
       marginBottom: '20px',
     },
@@ -154,7 +153,7 @@ const ImagePromptCopyApp = () => {
       borderRadius: '4px',
       marginBottom: '10px',
       whiteSpace: 'pre-wrap',
-      wordBreak: 'break-word',
+      wordBreak: 'break-all' as const, // ここを修正
       cursor: 'pointer',
       transition: 'background-color 0.3s',
     },
@@ -206,7 +205,7 @@ const ImagePromptCopyApp = () => {
       padding: '20px',
       borderRadius: '10px',
       zIndex: 1000,
-      textAlign: 'center',
+      textAlign: 'center' as const, // ここを修正
       fontSize: '18px',
       fontWeight: 'bold',
     },
@@ -215,7 +214,7 @@ const ImagePromptCopyApp = () => {
       border: 'none',
       color: 'white',
       padding: '10px 15px',
-      textAlign: 'center',
+      textAlign: 'center' as const, // ここを修正
       textDecoration: 'none',
       display: 'inline-block',
       fontSize: '14px',
@@ -224,7 +223,7 @@ const ImagePromptCopyApp = () => {
       borderRadius: '4px',
     },
   };
-
+  
   return (
     <div style={styles.container}>
       {showOverlay && (
