@@ -1,0 +1,80 @@
+{
+  "metadata": {
+    "content": "machikado mazoku",
+    "version": "1.3",
+    "lastUpdated": "2024-07-06"
+  },
+  "characters": [
+    {
+      "id": 1,
+      "name": "吉田優子",
+      "romanizedName": "Yoshida Yuuko",
+      "alias": "シャミ子"
+    },
+    {
+      "id": 2,
+      "name": "吉田良子",
+      "romanizedName": "Yoshida Ryoko"
+    },
+    {
+      "id": 3,
+      "name": "千代田桃",
+      "romanizedName": "Chiyoda Momo"
+    },
+    {
+      "id": 4,
+      "name": "リコくん",
+      "romanizedName": "Riko-kun"
+    },
+    {
+      "id": 5,
+      "name": "リリス",
+      "romanizedName": "Lilith"
+    },
+    {
+      "id": 6,
+      "name": "陽夏木ミカン",
+      "romanizedName": "Hinatsuki Mikan"
+    },
+    {
+      "id": 7,
+      "name": "千代田桜",
+      "romanizedName": "Chiyoda Sakura"
+    },
+    {
+      "id": 8,
+      "name": "佐田杏里",
+      "romanizedName": "Sata Anri"
+    },
+    {
+      "id": 9,
+      "name": "小倉しおん",
+      "romanizedName": "Ogura Shion"
+    },
+    {
+      "id": 10,
+      "name": "吉田清子",
+      "romanizedName": "Yoshida Seiko"
+    },
+    {
+      "id": 11,
+      "name": "吠える犬",
+      "romanizedName": "Hoeru Inu"
+    },
+    {
+      "id": 12,
+      "name": "白澤店長",
+      "romanizedName": "Shirasawa Tenchou"
+    },
+    {
+      "id": 13,
+      "name": "たまさくらちゃん",
+      "romanizedName": "Tamasakura-chan"
+    },
+    {
+      "id": 14,
+      "name": "メタ子",
+      "romanizedName": "Metako"
+    }
+  ]
+}

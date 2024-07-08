@@ -12,6 +12,9 @@ const ImagePromptCopyApp = () => {
   const [customSource, setCustomSource] = useState('');
   const [customCharacter, setCustomCharacter] = useState('');
   const [additionalPrompt, setAdditionalPrompt] = useState('');
+  const [copiedCharacter, setCopiedCharacter] = useState('');
+
+  console.log(copiedCharacter)
   
   const negativePrompt = "(worst quality:1.4), (low quality:1.4), (monochrome:1.3), (bad anatomy, bad hands:1.4), (watermark, username:1.2), lowres, text, error, missing fingers, extra digit, fewer digits, cropped, normal quality, jpeg artifacts,";
   const options = {
@@ -98,6 +101,15 @@ const ImagePromptCopyApp = () => {
 
   const handleCharacterChange = (e) => {
     setCharacter(e.target.value);
+  };
+
+  const handleCopyCharacterName = (name) => {
+    navigator.clipboard.writeText(name).then(() => {
+      setCopiedCharacter(name);
+      setTimeout(() => setCopiedCharacter(''), 2000);
+    }).catch(err => {
+      console.error('キャラクター名のコピーに失敗しました:', err);
+    });
   };
 
   const styles = {
@@ -196,6 +208,19 @@ const ImagePromptCopyApp = () => {
       fontSize: '18px',
       fontWeight: 'bold',
     },
+    copyButton: {
+      backgroundColor: '#4CAF50',
+      border: 'none',
+      color: 'white',
+      padding: '10px 15px',
+      textAlign: 'center',
+      textDecoration: 'none',
+      display: 'inline-block',
+      fontSize: '14px',
+      margin: '4px 2px',
+      cursor: 'pointer',
+      borderRadius: '4px',
+    },
   };
 
   return (
@@ -290,9 +315,10 @@ const ImagePromptCopyApp = () => {
             </>
           ) : (
             <label style={styles.label}>
-              キャラクター名:
+            キャラクター名:
+            <div style={{ display: 'flex', alignItems: 'center' }}>
               <select 
-                style={styles.select}
+                style={{ ...styles.select, flexGrow: 1, marginRight: '10px' }}
                 value={character}
                 onChange={handleCharacterChange}
               >
@@ -302,7 +328,19 @@ const ImagePromptCopyApp = () => {
                   </option>
                 ))}
               </select>
-            </label>
+              <button 
+                style={styles.copyButton}
+                onClick={() => {
+                  const selectedChar = characters.find(char => char.romanizedName === character);
+                  if (selectedChar) {
+                    handleCopyCharacterName(selectedChar.name);
+                  }
+                }}
+              >
+                コピー
+              </button>
+            </div>
+          </label>
           )}
         </div>
         <div style={styles.section}>

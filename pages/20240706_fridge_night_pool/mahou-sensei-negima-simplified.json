@@ -1,0 +1,184 @@
+{
+  "metadata": {
+    "content": "mahou sensei negima",
+    "version": "1.0",
+    "lastUpdated": "2024-07-06"
+  },
+  "characters": [
+    {
+      "id": 1,
+      "name": "ネギ・スプリングフィールド",
+      "romanizedName": "Negi Springfield"
+    },
+    {
+      "id": 2,
+      "name": "相坂さよ",
+      "romanizedName": "Aisaka Sayo"
+    },
+    {
+      "id": 3,
+      "name": "明石裕奈",
+      "romanizedName": "Akashi Yuuna"
+    },
+    {
+      "id": 4,
+      "name": "朝倉和美",
+      "romanizedName": "Asakura Kazumi"
+    },
+    {
+      "id": 5,
+      "name": "綾瀬夕映",
+      "romanizedName": "Ayase Yue"
+    },
+    {
+      "id": 6,
+      "name": "和泉亜子",
+      "romanizedName": "Izumi Ako"
+    },
+    {
+      "id": 7,
+      "name": "大河内アキラ",
+      "romanizedName": "Ookouchi Akira"
+    },
+    {
+      "id": 8,
+      "name": "柿崎美砂",
+      "romanizedName": "Kakizaki Misa"
+    },
+    {
+      "id": 9,
+      "name": "神楽坂明日菜",
+      "romanizedName": "Kagurazaka Asuna"
+    },
+    {
+      "id": 10,
+      "name": "春日美空",
+      "romanizedName": "Kasuga Misora"
+    },
+    {
+      "id": 11,
+      "name": "絡繰茶々丸",
+      "romanizedName": "Karakuri Chachamaru"
+    },
+    {
+      "id": 12,
+      "name": "釘宮円",
+      "romanizedName": "Kugimiya Madoka"
+    },
+    {
+      "id": 13,
+      "name": "古菲",
+      "romanizedName": "Ku Fei"
+    },
+    {
+      "id": 14,
+      "name": "近衛木乃香",
+      "romanizedName": "Konoe Konoka"
+    },
+    {
+      "id": 15,
+      "name": "早乙女ハルナ",
+      "romanizedName": "Saotome Haruna"
+    },
+    {
+      "id": 16,
+      "name": "桜咲刹那",
+      "romanizedName": "Sakurazaki Setsuna"
+    },
+    {
+      "id": 17,
+      "name": "佐々木まき絵",
+      "romanizedName": "Sasaki Makie"
+    },
+    {
+      "id": 18,
+      "name": "椎名桜子",
+      "romanizedName": "Shiina Sakurako"
+    },
+    {
+      "id": 19,
+      "name": "龍宮真名",
+      "romanizedName": "Tatsumiya Mana"
+    },
+    {
+      "id": 20,
+      "name": "超鈴音",
+      "romanizedName": "Chao Lingshen"
+    },
+    {
+      "id": 21,
+      "name": "長瀬楓",
+      "romanizedName": "Nagase Kaede"
+    },
+    {
+      "id": 22,
+      "name": "那波千鶴",
+      "romanizedName": "Naba Chizuru"
+    },
+    {
+      "id": 23,
+      "name": "鳴滝風香",
+      "romanizedName": "Narutaki Fuuka"
+    },
+    {
+      "id": 24,
+      "name": "鳴滝史伽",
+      "romanizedName": "Narutaki Fumika"
+    },
+    {
+      "id": 25,
+      "name": "葉加瀬聡美",
+      "romanizedName": "Hakase Satomi"
+    },
+    {
+      "id": 26,
+      "name": "長谷川千雨",
+      "romanizedName": "Hasegawa Chisame"
+    },
+    {
+      "id": 27,
+      "name": "エヴァンジェリン・A・K・マクダウェル",
+      "romanizedName": "Evangeline A.K. McDowell"
+    },
+    {
+      "id": 28,
+      "name": "宮崎のどか",
+      "romanizedName": "Miyazaki Nodoka"
+    },
+    {
+      "id": 29,
+      "name": "村上夏美",
+      "romanizedName": "Murakami Natsumi"
+    },
+    {
+      "id": 30,
+      "name": "雪広あやか",
+      "romanizedName": "Yukihiro Ayaka"
+    },
+    {
+      "id": 31,
+      "name": "四葉五月",
+      "romanizedName": "Yotsuba Satsuki"
+    },
+    {
+      "id": 32,
+      "name": "ザジ・レイニーデイ",
+      "romanizedName": "Zazie Rainyday"
+    },
+    {
+      "id": 33,
+      "name": "高音・D・グッドマン",
+      "romanizedName": "Takane D. Goodman"
+    },
+    {
+      "id": 34,
+      "name": "ネカネ・スプリングフィールド",
+      "romanizedName": "Nekane Springfield"
+    },
+    {
+      "id": 35,
+      "name": "アーニャ・ユーリエフナ・ココミノワ",
+      "romanizedName": "Anya Yurievna Cocolova"
+    }
+  ]
+}
