@@ -33,4 +33,18 @@ const nextConfig = {
   },
 }
 
+// next.config.js
+module.exports = {
+  webpack: (config, { isServer }) => {
+    // クライアントサイドのビルドでのみ適用
+    if (!isServer) {
+      config.node = {
+        fs: 'empty'
+      }
+    }
+
+    return config
+  }
+}
+
 module.exports = withBundleAnalyzer(nextConfig)
