@@ -35,7 +35,7 @@ const usePromptGenerator = (
   };
 
   useEffect(() => {
-    let prompt = `1 girl,{{${character}, ${selectedSource}}}, {wet bra, navel, wet panties}, luxury, night bool, in pool, bust focus, {{pastel pale tone skin}}, {{{smooth illustration,intricate silky hair,very aesthetic.amazing quality}}}`;
+    let prompt = `1 girl,{{${character}, ${selectedSource}}}, {wet bra, navel, wet panties}, luxury, night bool, in pool, bust focus, {{pastel pale tone skin}}, {{{smooth illustration,intricate silky hair,very aesthetic.amazing quality}}}, {{{Schmincke(water color),}}},}}`;
     if (additionalPrompt) {
       prompt += `, ${additionalPrompt}`;
     }
