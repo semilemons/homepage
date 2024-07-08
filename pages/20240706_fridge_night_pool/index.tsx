@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 const ImagePromptCopyApp = () => {
@@ -113,7 +113,7 @@ const ImagePromptCopyApp = () => {
     });
   };
 
-  const styles: { [key: string]: CSSProperties } = {
+  const styles: { [key: string]: React.CSSProperties } = {
     container: {
       fontFamily: 'Arial, sans-serif',
       maxWidth: '1200px',
@@ -223,7 +223,7 @@ const ImagePromptCopyApp = () => {
       borderRadius: '4px',
     },
   };
-  
+
   return (
     <div style={styles.container}>
       {showOverlay && (
