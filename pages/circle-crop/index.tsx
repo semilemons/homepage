@@ -5,10 +5,10 @@ import { useDropzone } from 'react-dropzone';
 const IconPngPage = () => {
   const [selectedSize, setSelectedSize] = useState('128');
   const [imageUrl, setImageUrl] = useState('');
-  const [originalImage, setOriginalImage] = useState(null);
-  const canvasRef = useRef(null);
+  const [originalImage, setOriginalImage] = useState<HTMLImageElement | null>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const convertToCircular = useCallback((file) => {
+  const convertToCircular = useCallback((file: File) => {
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
@@ -16,14 +16,19 @@ const IconPngPage = () => {
         setOriginalImage(img);
         resizeImage(img, parseInt(selectedSize));
       };
-      img.src = e.target.result;
+      if (e.target && typeof e.target.result === 'string') {
+        img.src = e.target.result;
+      }
     };
     reader.readAsDataURL(file);
   }, [selectedSize]);
 
-  const resizeImage = (img, size) => {
+  const resizeImage = (img: HTMLImageElement, size: number) => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+    
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
 
     canvas.width = size;
     canvas.height = size;
@@ -51,7 +56,7 @@ const IconPngPage = () => {
     }
   }, [selectedSize, originalImage]);
 
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles && acceptedFiles.length > 0) {
       convertToCircular(acceptedFiles[0]);
     }
@@ -73,7 +78,7 @@ const IconPngPage = () => {
   return (
     <div className="container mx-auto px-4 py-8 max-w-2xl">
       <Head>
-        <title>円形画像コンバーター</title>
+        <title>CircleCrop</title>
       </Head>
       <main className="flex flex-col items-center">
         <div 
