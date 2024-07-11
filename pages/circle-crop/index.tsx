@@ -1,22 +1,22 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import Head from 'next/head';
 import { useDropzone } from 'react-dropzone';
 
-const IconPngPage = () => {
-  const [selectedSize, setSelectedSize] = useState('128');
-  const [imageUrl, setImageUrl] = useState('');
+const IconPngPage: React.FC = () => {
+  const [selectedSize, setSelectedSize] = useState<string>('128');
+  const [imageUrl, setImageUrl] = useState<string>('');
   const [originalImage, setOriginalImage] = useState<HTMLImageElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const convertToCircular = useCallback((file: File) => {
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = (e: ProgressEvent<FileReader>) => {
       const img = new Image();
       img.onload = () => {
         setOriginalImage(img);
         resizeImage(img, parseInt(selectedSize));
       };
-      if (e.target && typeof e.target.result === 'string') {
+      if (e.target && e.target.result && typeof e.target.result === 'string') {
         img.src = e.target.result;
       }
     };
@@ -64,7 +64,7 @@ const IconPngPage = () => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: 'image/*',
+    accept: {'image/*': []},
     multiple: false,
   });
 
@@ -94,8 +94,8 @@ const IconPngPage = () => {
                 src={imageUrl} 
                 alt="Converted" 
                 className="max-w-full max-h-full object-contain"
-                width={selectedSize}
-                height={selectedSize}
+                width={parseInt(selectedSize)}
+                height={parseInt(selectedSize)}
               />
             </div>
           ) : isDragActive ? (
