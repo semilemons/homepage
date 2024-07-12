@@ -69,7 +69,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    const pageSize = pdfOrientation === 'portrait' ? PageSizes.A4 : [PageSizes.A4[1], PageSizes.A4[0]];
+    const pageSize: [number, number] = pdfOrientation === 'portrait' 
+      ? PageSizes.A4 
+      : [PageSizes.A4[1], PageSizes.A4[0]] as const;
 
     for (const file of fileArray) {
       if (!file) {
