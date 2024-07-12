@@ -69,9 +69,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    const pageSize: [number, number] = pdfOrientation === 'portrait' 
-      ? PageSizes.A4 
-      : [PageSizes.A4[1], PageSizes.A4[0]] as const;
+    const pageSize: readonly [number, number] = pdfOrientation === 'portrait'
+      ? PageSizes.A4
+      : [PageSizes.A4[1], PageSizes.A4[0]];
 
     for (const file of fileArray) {
       if (!file) {
@@ -98,7 +98,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           continue;
         }
 
-        const page = pdfDoc.addPage(pageSize);
+        // Use type assertion here
+        const page = pdfDoc.addPage(pageSize as [number, number]);
         const { width, height } = page.getSize();
         const imageAspectRatio = image.width / image.height;
         const pageAspectRatio = width / height;
