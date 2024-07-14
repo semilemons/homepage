@@ -41,7 +41,17 @@ const MarkdownToPDFConverter: React.FC = () => {
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = 'converted.pdf';
+
+      // 新しいファイル名を生成
+      const date = new Date();
+      const timestamp = date.getFullYear().toString() +
+        (date.getMonth() + 1).toString().padStart(2, '0') +
+        date.getDate().toString().padStart(2, '0') +
+        date.getHours().toString().padStart(2, '0');
+      const baseFileName = fileName.replace(/\.md$/, '') || 'document';
+      const newFileName = `${baseFileName}_${timestamp}.pdf`;
+
+      a.download = newFileName;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -73,7 +83,7 @@ const MarkdownToPDFConverter: React.FC = () => {
           <h2 className="text-xl font-semibold mb-3">Upload Markdown File</h2>
           <div
             {...getRootProps()}
-            className={`border-2 border-dashed p-4 rounded ${
+            className={`border-2 h-[70vh] border-dashed p-4 rounded ${
               isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
             }`}
           >
@@ -81,7 +91,7 @@ const MarkdownToPDFConverter: React.FC = () => {
             {fileName ? (
               <p>Uploaded file: {fileName}</p>
             ) : (
-              <p>Drag 'n' drop a Markdown file here, or click to select one</p>
+              <p>マークダウンファイルを1つドラッグ &ドロップするか, クリックして、ファイルを選択してください.</p>
             )}
           </div>
           <button
