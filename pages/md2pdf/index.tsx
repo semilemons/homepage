@@ -2,6 +2,21 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
+
+// ReactMarkdownをラップする新しいコンポーネント
+
+const MarkdownPreview: React.FC<{ content: string }> = ({ content }) => {
+return (
+    (ReactMarkdown as any)({
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypeRaw, rehypeSanitize],
+      children: content
+    })
+  );
+};
 
 const MarkdownToPDFConverter: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>('');
@@ -84,7 +99,7 @@ const MarkdownToPDFConverter: React.FC = () => {
         <div>
           <h2 className="text-xl font-semibold mb-3">Preview</h2>
           <div className="border border-gray-300 rounded p-4 prose">
-            <ReactMarkdown>{markdown}</ReactMarkdown>
+            <MarkdownPreview content={markdown} />
           </div>
         </div>
       </div>
