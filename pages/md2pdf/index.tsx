@@ -1,22 +1,6 @@
 // pages/md2pdf.tsx
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
-import rehypeSanitize from 'rehype-sanitize';
-
-// ReactMarkdownをラップする新しいコンポーネント
-
-const MarkdownPreview: React.FC<{ content: string }> = ({ content }) => {
-return (
-    (ReactMarkdown as any)({
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypeRaw, rehypeSanitize],
-      children: content
-    })
-  );
-};
 
 const MarkdownToPDFConverter: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>('');
@@ -69,6 +53,18 @@ const MarkdownToPDFConverter: React.FC = () => {
     }
   };
 
+  const handleSaveMarkdown = () => {
+    const blob = new Blob([markdown], { type: 'text/markdown' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = fileName || 'edited.md';
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Markdown to PDF Converter</h1>
@@ -95,11 +91,22 @@ const MarkdownToPDFConverter: React.FC = () => {
           >
             {isConverting ? 'Converting...' : 'Convert to PDF'}
           </button>
+          <button
+            className="mt-4 ml-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 disabled:bg-green-300"
+            onClick={handleSaveMarkdown}
+            disabled={!markdown}
+          >
+            Save Markdown
+          </button>
         </div>
         <div>
-          <h2 className="text-xl font-semibold mb-3">Preview</h2>
+          <h2 className="text-xl font-semibold mb-3">Preview & Edit</h2>
           <div className="border border-gray-300 rounded p-4 prose">
-            <MarkdownPreview content={markdown} />
+            <textarea
+              className="w-full h-[70vh] border-none resize-none"
+              value={markdown}
+              onChange={(e) => setMarkdown(e.target.value)}
+            />
           </div>
         </div>
       </div>
