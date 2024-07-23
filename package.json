@@ -55,6 +55,7 @@
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.3.1",
     "clsx": "^2.1.1",
+    "d3": "^7.9.0",
     "date-fns": "^2.28.0",
     "expiry-map": "^2.0.0",
     "fathom-client": "^3.4.1",

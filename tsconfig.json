@@ -25,5 +25,5 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "site.config.ts"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "site.config.ts", "pages/tmp/BarChart.js"]
 }
