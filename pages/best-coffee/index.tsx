@@ -28,8 +28,10 @@ const CoffeeBrewingGuide: React.FC = () => {
   const [tasteVariant, setTasteVariant] = useState<string>('basic');
   const [strengthVariant, setStrengthVariant] = useState<string>('normal');
   const [pourAmounts, setPourAmounts] = useState<number[]>([]);
+  const [initialScale, setInitialScale] = useState<string>('0');
+  const [currentWaterAmount, setCurrentWaterAmount] = useState<number>(0);
 
-  const presetAmounts: number[] = [30, 60, 90];
+  const presetAmounts: number[] = [10, 20, 30];
 
   const tasteVariants: Record<string, TasteVariant> = {
     basic: { name: 'ベーシック', first: 60, second: 60, description: 'バランスの取れた味わい' },
@@ -53,8 +55,9 @@ const CoffeeBrewingGuide: React.FC = () => {
         ...strengthVariants[strengthVariant].steps.map(step => Math.round(strengthWater * step / 180))
       ];
       setPourAmounts(newPourAmounts);
+      setCurrentWaterAmount(Number(initialScale));
     }
-  }, [waterAmount, tasteVariant, strengthVariant]);
+  }, [waterAmount, tasteVariant, strengthVariant, initialScale]);
 
   const handleStartBrewing = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,10 +68,12 @@ const CoffeeBrewingGuide: React.FC = () => {
 
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1);
+    setCurrentWaterAmount(prev => prev + pourAmounts[currentStep - 1]);
   };
 
   const handlePreviousStep = () => {
     setCurrentStep(currentStep - 1);
+    setCurrentWaterAmount(prev => prev - pourAmounts[currentStep - 2]);
   };
 
   const handleReset = () => {
@@ -76,6 +81,7 @@ const CoffeeBrewingGuide: React.FC = () => {
     setWaterAmount(0);
     setCurrentStep(0);
     setPourAmounts([]);
+    setCurrentWaterAmount(Number(initialScale));
   };
 
   const handlePresetClick = (amount: number) => {
@@ -84,6 +90,10 @@ const CoffeeBrewingGuide: React.FC = () => {
 
   const getInstructionText = (instruction: Instruction): string => {
     return typeof instruction === 'function' ? instruction() : instruction;
+  };
+
+  const getNextTargetAmount = (stepIndex: number): number => {
+    return currentWaterAmount + pourAmounts[stepIndex];
   };
 
   const steps: Step[] = [
@@ -192,6 +202,19 @@ const CoffeeBrewingGuide: React.FC = () => {
             </div>
             <p className="mt-1 text-sm text-gray-600">お湯の量は自動的にコーヒー粉の15倍に設定されます。</p>
           </div>
+          <div className="mb-4">
+            <label htmlFor="initialScale" className="block text-gray-700 font-bold mb-2">
+              はかりの初期メモリ (g)
+            </label>
+            <input
+              type="number"
+              id="initialScale"
+              value={initialScale}
+              onChange={(e) => setInitialScale(e.target.value)}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              min="0"
+            />
+          </div>
           <button
             type="submit"
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
@@ -211,6 +234,12 @@ const CoffeeBrewingGuide: React.FC = () => {
           <div className="mb-6 bg-gray-100 p-4 rounded">
             <h3 className="font-bold text-lg mb-2">{steps[currentStep - 1].title}</h3>
             <p className="whitespace-pre-line">{getInstructionText(steps[currentStep - 1].instruction)}</p>
+            {currentStep < steps.length - 1 && (
+              <div className="mt-4">
+                <p className="font-semibold">現在のお湯の量: {currentWaterAmount}g</p>
+                <p className="font-semibold">次の目標量: {getNextTargetAmount(currentStep - 1)}g</p>
+              </div>
+            )}
           </div>
           <div className="flex justify-between">
             {currentStep > 1 && (
