@@ -1,6 +1,15 @@
 // CoffeeBrewingGuide.js
 import React, { useState, useEffect } from 'react';
 
+type Instruction = string | (() => string);
+
+interface Step {
+  title: string;
+  instruction: Instruction;
+}
+
+
+
 export default function CoffeeBrewingGuide() {
   const [coffeeAmount, setCoffeeAmount] = useState('');
   const [waterAmount, setWaterAmount] = useState(0);
@@ -62,7 +71,7 @@ export default function CoffeeBrewingGuide() {
     setCoffeeAmount(amount.toString());
   };
 
-  const steps = [
+  const steps: Step[] = [
     { 
       title: '準備', 
       instruction: () => `
