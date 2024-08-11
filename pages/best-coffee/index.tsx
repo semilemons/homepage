@@ -1,4 +1,4 @@
-// CoffeeBrewingGuide.js
+// CoffeeBrewingGuide.tsx
 import React, { useState, useEffect } from 'react';
 
 type Instruction = string | (() => string);
@@ -8,25 +8,36 @@ interface Step {
   instruction: Instruction;
 }
 
+interface TasteVariant {
+  name: string;
+  first: number;
+  second: number;
+  description: string;
+}
 
+interface StrengthVariant {
+  name: string;
+  steps: number[];
+  description: string;
+}
 
-export default function CoffeeBrewingGuide() {
-  const [coffeeAmount, setCoffeeAmount] = useState('');
-  const [waterAmount, setWaterAmount] = useState(0);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [tasteVariant, setTasteVariant] = useState('basic');
-  const [strengthVariant, setStrengthVariant] = useState('normal');
-  const [pourAmounts, setPourAmounts] = useState([]);
+const CoffeeBrewingGuide: React.FC = () => {
+  const [coffeeAmount, setCoffeeAmount] = useState<string>('');
+  const [waterAmount, setWaterAmount] = useState<number>(0);
+  const [currentStep, setCurrentStep] = useState<number>(0);
+  const [tasteVariant, setTasteVariant] = useState<string>('basic');
+  const [strengthVariant, setStrengthVariant] = useState<string>('normal');
+  const [pourAmounts, setPourAmounts] = useState<number[]>([]);
 
-  const presetAmounts = [20, 10, 30];
+  const presetAmounts: number[] = [30, 60, 90];
 
-  const tasteVariants = {
+  const tasteVariants: Record<string, TasteVariant> = {
     basic: { name: 'ベーシック', first: 60, second: 60, description: 'バランスの取れた味わい' },
     sweet: { name: 'より甘く', first: 50, second: 70, description: '1投目を少なくすることで、より甘い味わいに' },
     bright: { name: 'より明るく', first: 70, second: 50, description: '1投目を多くすることで、より明るい味わいに' }
   };
 
-  const strengthVariants = {
+  const strengthVariants: Record<string, StrengthVariant> = {
     light: { name: '薄く', steps: [180, 0, 0], description: '残り60%を1回で注ぎ、薄めの味わいに' },
     normal: { name: '普通', steps: [60, 60, 60], description: '残り60%を3回に分けて注ぎ、バランスの取れた濃さに' },
     strong: { name: '濃く', steps: [90, 90, 0], description: '残り60%を2回に分けて注ぎ、濃い味わいに' }
@@ -45,7 +56,7 @@ export default function CoffeeBrewingGuide() {
     }
   }, [waterAmount, tasteVariant, strengthVariant]);
 
-  const handleStartBrewing = (e) => {
+  const handleStartBrewing = (e: React.FormEvent) => {
     e.preventDefault();
     const amount = Number(coffeeAmount);
     setWaterAmount(amount * 15);
@@ -67,8 +78,12 @@ export default function CoffeeBrewingGuide() {
     setPourAmounts([]);
   };
 
-  const handlePresetClick = (amount) => {
+  const handlePresetClick = (amount: number) => {
     setCoffeeAmount(amount.toString());
+  };
+
+  const getInstructionText = (instruction: Instruction): string => {
+    return typeof instruction === 'function' ? instruction() : instruction;
   };
 
   const steps: Step[] = [
@@ -195,7 +210,7 @@ export default function CoffeeBrewingGuide() {
           </div>
           <div className="mb-6 bg-gray-100 p-4 rounded">
             <h3 className="font-bold text-lg mb-2">{steps[currentStep - 1].title}</h3>
-            <p className="whitespace-pre-line">{typeof steps[currentStep - 1].instruction === 'function' ? steps[currentStep - 1].instruction() : steps[currentStep - 1].instruction}</p>
+            <p className="whitespace-pre-line">{getInstructionText(steps[currentStep - 1].instruction)}</p>
           </div>
           <div className="flex justify-between">
             {currentStep > 1 && (
@@ -226,4 +241,6 @@ export default function CoffeeBrewingGuide() {
       )}
     </div>
   );
-}
+};
+
+export default CoffeeBrewingGuide;
