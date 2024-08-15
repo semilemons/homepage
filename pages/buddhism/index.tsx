@@ -149,15 +149,22 @@ const BuddhismConceptsTree = () => {
     ]
   };
 
+
   return (
     <div className="p-4 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">仏教の主要概念</h1>
       <TreeNode node={data} />
       <TreeNode node={additionalConcepts} />
-      
-    <Link href="/buddhism/page1">
+
+
+    {/* <Link href="/buddhism/page1">
       <a className="mt-8 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
         Page 1
+      </a>
+    </Link> */}
+    <Link href="/buddhism/page2">
+      <a className="mt-8 inline-block bg-green-400 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded">
+        慈悲の瞑想
       </a>
     </Link>
     </div>
