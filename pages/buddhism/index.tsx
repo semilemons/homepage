@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronRight, Info } from 'lucide-react';
+import Link from 'next/link';
 
 const TreeNode = ({ node }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -153,8 +154,15 @@ const BuddhismConceptsTree = () => {
       <h1 className="text-2xl font-bold mb-4">仏教の主要概念</h1>
       <TreeNode node={data} />
       <TreeNode node={additionalConcepts} />
+      
+    <Link href="/buddhism/page1">
+      <a className="mt-8 inline-block bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded">
+        Page 1
+      </a>
+    </Link>
     </div>
   );
 };
+
 
 export default BuddhismConceptsTree;
