@@ -50,14 +50,19 @@ const CoffeeBrewingGuide: React.FC = () => {
       const tasteWater = waterAmount * 0.4;
       const strengthWater = waterAmount * 0.6;
       const newPourAmounts = [
-        Math.round(tasteWater * tasteVariants[tasteVariant].first / 120),
-        Math.round(tasteWater * tasteVariants[tasteVariant].second / 120),
-        ...strengthVariants[strengthVariant].steps.map(step => Math.round(strengthWater * step / 180))
+        Math.round(tasteWater * tasteVariants[tasteVariant].first / 100),
+        Math.round(tasteWater * tasteVariants[tasteVariant].second / 100),
+        ...strengthVariants[strengthVariant].steps.map(step => Math.round(strengthWater * step / 100))
       ];
       setPourAmounts(newPourAmounts);
       setCurrentWaterAmount(Number(initialScale));
     }
   }, [waterAmount, tasteVariant, strengthVariant, initialScale]);
+
+
+
+
+
 
   const handleStartBrewing = (e: React.FormEvent) => {
     e.preventDefault();
