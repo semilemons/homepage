@@ -1,211 +1,158 @@
-// CoffeeBrewingGuide.tsx
 import React, { useState, useEffect } from 'react';
 
-type Instruction = string | (() => string);
-
-interface Step {
-  title: string;
-  instruction: Instruction;
+interface UserInput {
+  coffeeAmount: number;
+  tasteVariant: 'basic' | 'sweet' | 'bright';
+  strengthVariant: 'light' | 'normal' | 'strong';
+  initialScale: number;
 }
 
-interface TasteVariant {
-  name: string;
-  first: number;
-  second: number;
-  description: string;
+interface BrewingStep {
+  instruction: string;
+  pourAmount: number;
+  targetScale: number;
 }
 
-interface StrengthVariant {
-  name: string;
-  steps: number[];
-  description: string;
-}
+const tasteVariants = {
+  basic: { name: 'ベーシック', firstPour: 60, secondPour: 60 },
+  sweet: { name: 'より甘く', firstPour: 50, secondPour: 70 },
+  bright: { name: 'より明るく', firstPour: 70, secondPour: 50 },
+};
+
+const strengthVariants = {
+  light: { name: '薄く', pourSteps: [180] },
+  normal: { name: 'より濃く', pourSteps: [90, 90] },
+  strong: { name: 'さらに濃く', pourSteps: [60, 60, 60] },
+};
 
 const CoffeeBrewingGuide: React.FC = () => {
-  const [coffeeAmount, setCoffeeAmount] = useState<string>('');
-  const [waterAmount, setWaterAmount] = useState<number>(0);
-  const [currentStep, setCurrentStep] = useState<number>(0);
-  const [tasteVariant, setTasteVariant] = useState<string>('basic');
-  const [strengthVariant, setStrengthVariant] = useState<string>('normal');
-  const [pourAmounts, setPourAmounts] = useState<number[]>([]);
-  const [initialScale, setInitialScale] = useState<string>('0');
-  const [currentWaterAmount, setCurrentWaterAmount] = useState<number>(0);
-
-  const presetAmounts: number[] = [10, 20, 30];
-
-  const tasteVariants: Record<string, TasteVariant> = {
-    basic: { name: 'ベーシック', first: 60, second: 60, description: 'バランスの取れた味わい' },
-    sweet: { name: 'より甘く', first: 50, second: 70, description: '1投目を少なくすることで、より甘い味わいに' },
-    bright: { name: 'より明るく', first: 70, second: 50, description: '1投目を多くすることで、より明るい味わいに' }
-  };
-
-  const strengthVariants: Record<string, StrengthVariant> = {
-    light: { name: '薄く', steps: [180, 0, 0], description: '残り60%を1回で注ぎ、薄めの味わいに' },
-    normal: { name: '普通', steps: [60, 60, 60], description: '残り60%を3回に分けて注ぎ、バランスの取れた濃さに' },
-    strong: { name: '濃く', steps: [90, 90, 0], description: '残り60%を2回に分けて注ぎ、濃い味わいに' }
-  };
+  const [userInput, setUserInput] = useState<UserInput>({
+    coffeeAmount: 20,
+    tasteVariant: 'basic',
+    strengthVariant: 'normal',
+    initialScale: 100,
+  });
+  const [brewingSteps, setBrewingSteps] = useState<BrewingStep[]>([]);
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
-    if (waterAmount > 0) {
-      const tasteWater = waterAmount * 0.4;
-      const strengthWater = waterAmount * 0.6;
-      const newPourAmounts = [
-        Math.round(tasteWater * tasteVariants[tasteVariant].first / 100),
-        Math.round(tasteWater * tasteVariants[tasteVariant].second / 100),
-        ...strengthVariants[strengthVariant].steps.map(step => Math.round(strengthWater * step / 100))
-      ];
-      setPourAmounts(newPourAmounts);
-      setCurrentWaterAmount(Number(initialScale));
-    }
-  }, [waterAmount, tasteVariant, strengthVariant, initialScale]);
+    calculateBrewingSteps();
+  }, );
 
+  const calculateBrewingSteps = () => {
+    const { coffeeAmount, tasteVariant, strengthVariant, initialScale } = userInput;
+    const totalWater = coffeeAmount * 15;
+    const taste = tasteVariants[tasteVariant];
+    const strength = strengthVariants[strengthVariant];
 
+    const firstPour = Math.round(totalWater * taste.firstPour / 300);
+    const secondPour = Math.round(totalWater * taste.secondPour / 300);
 
+    const steps: BrewingStep[] = [
+      {
+        instruction: `コーヒー粉${coffeeAmount}gをセットしてください。`,
+        pourAmount: 0,
+        targetScale: initialScale + coffeeAmount,
+      },
+      {
+        instruction: `${firstPour}gの水を注いでください。`,
+        pourAmount: firstPour,
+        targetScale: initialScale + coffeeAmount + firstPour,
+      },
+      {
+        instruction: `${secondPour}gの水を注いでください。`,
+        pourAmount: secondPour,
+        targetScale: initialScale + coffeeAmount + firstPour + secondPour,
+      },
+    ];
 
+    let currentScale = steps[steps.length - 1].targetScale;
+    strength.pourSteps.forEach(pour => { // Removed 'index' as it's not used
+      const pourAmount = Math.round(totalWater * pour / 300);
+      currentScale += pourAmount;
+      steps.push({
+        instruction: `${pourAmount}gの水を注いでください。`,
+        pourAmount,
+        targetScale: currentScale,
+      });
+    });
 
+    setBrewingSteps(steps);
+  };
 
-  const handleStartBrewing = (e: React.FormEvent) => {
-    e.preventDefault();
-    const amount = Number(coffeeAmount);
-    setWaterAmount(amount * 15);
-    setCurrentStep(1);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setUserInput(prev => ({
+      ...prev,
+      [name]: name === 'coffeeAmount' || name === 'initialScale' ? Number(value) : value,
+    }));
   };
 
   const handleNextStep = () => {
-    setCurrentStep(currentStep + 1);
-    setCurrentWaterAmount(prev => prev + pourAmounts[currentStep - 1]);
+    if (currentStep < brewingSteps.length - 1) {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   const handlePreviousStep = () => {
-    setCurrentStep(currentStep - 1);
-    setCurrentWaterAmount(prev => prev - pourAmounts[currentStep - 2]);
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
   const handleReset = () => {
-    setCoffeeAmount('');
-    setWaterAmount(0);
     setCurrentStep(0);
-    setPourAmounts([]);
-    setCurrentWaterAmount(Number(initialScale));
   };
-
-  const handlePresetClick = (amount: number) => {
-    setCoffeeAmount(amount.toString());
-  };
-
-  const getInstructionText = (instruction: Instruction): string => {
-    return typeof instruction === 'function' ? instruction() : instruction;
-  };
-
-  const getNextTargetAmount = (stepIndex: number): number => {
-    return currentWaterAmount + pourAmounts[stepIndex];
-  };
-
-  const steps: Step[] = [
-    { 
-      title: '準備', 
-      instruction: () => `
-        以下の道具を用意してください：
-        - ドリッパー
-        - ペーパーフィルター
-        - サーバー
-        - ${coffeeAmount}gのコーヒー豆（中粗挽き～粗挽き）
-        - ${waterAmount}gのお湯（浅煎りは93℃前後、中煎りは88℃前後、深煎りは83℃前後）
-        - スケール
-        - ケトル（できれば細口）
-        
-        準備ができたら、「調理開始」ボタンを押してください。
-      `
-    },
-    { 
-      title: '1回目の注湯 (味わいの調整)', 
-      instruction: () => `${pourAmounts[0]}gのお湯を注ぎます。これは総湯量の40%のうちの最初の注湯です。${tasteVariants[tasteVariant].description}`
-    },
-    { 
-      title: '2回目の注湯 (味わいの調整)', 
-      instruction: () => `${pourAmounts[1]}gのお湯を注ぎます。これで味わいの調整（総湯量の40%）が完了します。`
-    },
-    { 
-      title: '3回目の注湯 (濃度の調整)', 
-      instruction: () => `${pourAmounts[2]}gのお湯を注ぎます。これから濃度の調整（残りの60%）を行います。${strengthVariants[strengthVariant].description}`
-    },
-    { 
-      title: '4回目の注湯 (濃度の調整)', 
-      instruction: () => `${pourAmounts[3]}gのお湯を注ぎます。`
-    },
-    { 
-      title: '5回目の注湯 (濃度の調整)', 
-      instruction: () => `${pourAmounts[4]}gのお湯を注ぎます。`
-    },
-    { 
-      title: '完成', 
-      instruction: 'ドリッパーを外し、コーヒーをお楽しみください。4:6メソッドにより、あなたの好みに合わせた味わいと濃さのコーヒーが完成しました。'
-    },
-  ];
 
   return (
     <div className="container mx-auto px-4 py-8 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center text-blue-800">4:6メソッド コーヒー抽出ガイド</h1>
       {currentStep === 0 ? (
-        <form onSubmit={handleStartBrewing} className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <form onSubmit={(e) => { e.preventDefault(); handleNextStep(); }} className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
+          <div className="mb-4">
+            <label htmlFor="coffeeAmount" className="block text-gray-700 font-bold mb-2">
+              コーヒー粉の量 (g)
+            </label>
+            <input
+              type="number"
+              id="coffeeAmount"
+              name="coffeeAmount"
+              value={userInput.coffeeAmount}
+              onChange={handleInputChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              required
+              min="1"
+            />
+          </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2">
-              味わいバリエーション (最初の40%の調整)
+              味わいバリエーション
             </label>
             <select
-              value={tasteVariant}
-              onChange={(e) => setTasteVariant(e.target.value)}
+              name="tasteVariant"
+              value={userInput.tasteVariant}
+              onChange={handleInputChange}
               className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             >
               {Object.entries(tasteVariants).map(([key, { name }]) => (
                 <option key={key} value={key}>{name}</option>
               ))}
             </select>
-            <p className="mt-1 text-sm text-gray-600">{tasteVariants[tasteVariant].description}</p>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-bold mb-2">
-              濃さバリエーション (残りの60%の調整)
+              濃さバリエーション
             </label>
             <select
-              value={strengthVariant}
-              onChange={(e) => setStrengthVariant(e.target.value)}
+              name="strengthVariant"
+              value={userInput.strengthVariant}
+              onChange={handleInputChange}
               className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             >
               {Object.entries(strengthVariants).map(([key, { name }]) => (
                 <option key={key} value={key}>{name}</option>
               ))}
             </select>
-            <p className="mt-1 text-sm text-gray-600">{strengthVariants[strengthVariant].description}</p>
-          </div>
-          <div className="mb-4">
-            <label htmlFor="coffeeAmount" className="block text-gray-700 font-bold mb-2">
-              コーヒー粉の量 (g)
-            </label>
-            <div className="flex items-center">
-              <input
-                type="number"
-                id="coffeeAmount"
-                value={coffeeAmount}
-                onChange={(e) => setCoffeeAmount(e.target.value)}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mr-2"
-                required
-                min="1"
-              />
-              <div className="flex space-x-2">
-                {presetAmounts.map((amount) => (
-                  <button
-                    key={amount}
-                    type="button"
-                    onClick={() => handlePresetClick(amount)}
-                    className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-3 rounded"
-                  >
-                    {amount}g
-                  </button>
-                ))}
-              </div>
-            </div>
-            <p className="mt-1 text-sm text-gray-600">お湯の量は自動的にコーヒー粉の15倍に設定されます。</p>
           </div>
           <div className="mb-4">
             <label htmlFor="initialScale" className="block text-gray-700 font-bold mb-2">
@@ -214,8 +161,9 @@ const CoffeeBrewingGuide: React.FC = () => {
             <input
               type="number"
               id="initialScale"
-              value={initialScale}
-              onChange={(e) => setInitialScale(e.target.value)}
+              name="initialScale"
+              value={userInput.initialScale}
+              onChange={handleInputChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               min="0"
             />
@@ -229,38 +177,28 @@ const CoffeeBrewingGuide: React.FC = () => {
         </form>
       ) : (
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-bold mb-4 text-blue-800">抽出ステップ</h2>
-          <div className="mb-4 p-3 bg-blue-100 rounded">
-            <p className="font-semibold">コーヒー粉: {coffeeAmount}g</p>
-            <p className="font-semibold">お湯: {waterAmount}g</p>
-            <p>味わい: {tasteVariants[tasteVariant].name}</p>
-            <p>濃さ: {strengthVariants[strengthVariant].name}</p>
-          </div>
+          <h2 className="text-xl font-bold mb-4 text-blue-800">ステップ {currentStep} / {brewingSteps.length - 1}</h2>
           <div className="mb-6 bg-gray-100 p-4 rounded">
-            <h3 className="font-bold text-lg mb-2">{steps[currentStep - 1].title}</h3>
-            <p className="whitespace-pre-line">{getInstructionText(steps[currentStep - 1].instruction)}</p>
-            {currentStep < steps.length - 1 && (
-              <div className="mt-4">
-                <p className="font-semibold">現在のお湯の量: {currentWaterAmount}g</p>
-                <p className="font-semibold">次の目標量: {getNextTargetAmount(currentStep - 1)}g</p>
-              </div>
-            )}
+            <p className="font-semibold mb-2">{brewingSteps[currentStep].instruction}</p>
+            <p className="text-sm">目標の計りの表示: {brewingSteps[currentStep].targetScale}g</p>
           </div>
-          <div className="flex justify-between">
-            {currentStep > 1 && (
+          <div className="flex justify-between items-center">
+            {currentStep > 0 ? (
               <button
                 onClick={handlePreviousStep}
                 className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 前のステップ
               </button>
+            ) : (
+              <div></div>
             )}
-            {currentStep < steps.length ? (
+            {currentStep < brewingSteps.length - 1 ? (
               <button
                 onClick={handleNextStep}
                 className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
-                {currentStep === 1 ? '調理開始' : '次のステップ'}
+                次のステップ
               </button>
             ) : (
               <button
