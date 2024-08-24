@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 
 interface UserInput {
   coffeeAmount: number;
@@ -107,6 +108,13 @@ const CoffeeBrewingGuide: React.FC = () => {
   return (
     <div className="container mx-auto px-4 py-8 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center text-blue-800">4:6メソッド コーヒー抽出ガイド</h1>
+      <p className="text-xl font-bold mb-4 text-center text-black-800">
+        <Link href="/best-coffee/details" passHref>
+          <a>詳細</a>
+        </Link>
+      </p>
+
+              
       {currentStep === 0 ? (
         <form onSubmit={(e) => { e.preventDefault(); handleNextStep(); }} className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
           <div className="mb-4">
@@ -168,12 +176,17 @@ const CoffeeBrewingGuide: React.FC = () => {
               min="0"
             />
           </div>
-          <button
-            type="submit"
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
-          >
-            抽出開始
-          </button>
+
+          <div className="flex justify-between mb-4">
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded focus:outline-none focus:shadow-outline w-1/2 mr-2"
+            >
+              抽出開始
+            </button>
+       
+          </div>
+
         </form>
       ) : (
         <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg">
